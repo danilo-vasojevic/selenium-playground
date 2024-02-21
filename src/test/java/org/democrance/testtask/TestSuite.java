@@ -1,5 +1,5 @@
 package org.democrance.testtask;
-import org.democrance.dto.PolicyDataDTO;
+import org.democrance.testtask.dto.PolicyDataDTO;
 import org.democrance.testtask.utils.Any;
 import org.junit.jupiter.api.*;
 
@@ -16,6 +16,6 @@ public class TestSuite extends TestFixture {
         po.summaryPage.confirmAndBuyNow();
         po.summaryPage.paymentModal.generateInvoice(randomNumeric(5));
         po.confirmationPage.verifyTitle("Congratulations!");
-        // po.confirmationPage.downloadAndVerifyPolicySchedule("COI-UAE");
+        po.confirmationPage.downloadAndVerifyPolicySchedule("COI-UAE");
     }
 }

@@ -1,5 +1,5 @@
 package org.democrance.testtask.pageObject.pages;
-import org.democrance.dto.PolicyDataDTO;
+import org.democrance.testtask.dto.PolicyDataDTO;
 import org.democrance.testtask.pageObject.components.InformationTab;
 import org.democrance.testtask.pageObject.components.IssuanceAndPaymentTab;
 import org.democrance.testtask.pageObject.components.TermsConditionsTab;
