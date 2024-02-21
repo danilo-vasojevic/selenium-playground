@@ -18,6 +18,14 @@ public class Any {
         }
         return name.toString();
     }
+
+    private static String randomElementOf(String... array) {
+        int length = array.length;
+        Random random = new Random();
+        int index = random.nextInt(length);
+        return array[index];
+    }
+
     public static String randomText(int length) {
         return randomString(UPPERCASE_LETTERS+LOWERCASE_LETTERS, length);
     }
@@ -35,12 +43,14 @@ public class Any {
         return randomText(20) + "@automation.com";
     }
 
+
+
     public static PolicyDataDTO validPolicyData() {
         PolicyDataDTO dto = new PolicyDataDTO();
         dto.amount = "Above 30,000";
-        dto.frequency = "Monthly";
-        dto.title = "Mr";
-        dto.name = randomText(5);
+        dto.frequency = randomElementOf("Monthly", "Annually");
+        dto.title = randomElementOf("Mr", "Mrs", "Ms");
+        dto.name = randomText(5) + " " + randomText(10);
         dto.email = randomEmail();
         dto.nationality = "Serbia";
         dto.phone = randomPhone();

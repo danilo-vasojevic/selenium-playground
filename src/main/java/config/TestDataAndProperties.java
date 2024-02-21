@@ -27,9 +27,6 @@ public interface TestDataAndProperties extends Config {
     @DefaultValue("5")
     int pageLoadTimeout();
 
-    @Key("webdriver.waits.waitTimeout")
-    int waitTimeout();
-
     @Key("aut.baseUrl")
     String baseUrl();
 }
