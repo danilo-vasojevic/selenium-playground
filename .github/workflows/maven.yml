@@ -16,4 +16,4 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn -Dwebdriver.browser=chrome test
+      run: mvn -B -D"webdriver.browser=chrome" test
