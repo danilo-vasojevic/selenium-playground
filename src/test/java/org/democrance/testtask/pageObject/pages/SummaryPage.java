@@ -25,7 +25,7 @@ public class SummaryPage extends BaseComponent {
     public void confirmAndBuyNow() {
         wait.untilHasText(quoteRefNumber, "Quotation Reference Number");
         wait.untilDisplayed(confirm);
-        wait.forTimeout(500);
+        wait.forTimeout(1000);
         confirm.click();
     }
 }

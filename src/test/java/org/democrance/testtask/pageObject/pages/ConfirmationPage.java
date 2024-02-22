@@ -23,6 +23,7 @@ public class ConfirmationPage extends BaseComponent {
     }
 
     public void downloadAndVerifyPolicySchedule(String expFileName) {
+        wait.forLoadingToAppearAndDisappear();
         downloadPolicySchedule.click();
         wait.untilFileIsDownloaded(expFileName);
     }
