@@ -4,7 +4,7 @@ import org.democrance.testtask.pageObject.PageObject;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 
-public class TestFixture {
+public class Fixture {
     PageObject po;
 
     @BeforeEach

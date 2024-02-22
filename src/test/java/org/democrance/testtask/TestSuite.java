@@ -5,7 +5,7 @@ import org.junit.jupiter.api.*;
 
 import static org.democrance.testtask.utils.Any.*;
 
-public class TestSuite extends TestFixture {
+public class TestSuite extends Fixture {
     @Test
     public void getQuoteTest() {
         PolicyDataDTO validData = Any.validPolicyData();
