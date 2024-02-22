@@ -7,7 +7,7 @@ import static org.democrance.testtask.utils.Any.*;
 
 public class TestSuite extends TestFixture {
     @Test
-    public void getQuote() {
+    public void getQuoteTest() {
         PolicyDataDTO validData = Any.validPolicyData();
 
         po.quoteEntryPage.enterBasicInformation(validData);
