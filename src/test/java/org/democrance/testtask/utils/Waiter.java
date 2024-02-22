@@ -1,5 +1,6 @@
 package org.democrance.testtask.utils;
 
+import config.DataProvider;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
@@ -9,14 +10,13 @@ import java.io.File;
 import java.time.Duration;
 
 public class Waiter {
-    public static final String DEFAULT_DOWNLOAD_DIR = "C:\\Users\\danil\\Downloads";
     private final WebDriver driver;
     private final WebDriverWait wait;
     private final Wait<WebDriver> fluentWait;
 
     public Waiter(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(DataProvider.get().waitTimeout()));
         fluentWait = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(10))
                 .pollingEvery(Duration.ofMillis(500))
@@ -52,7 +52,7 @@ public class Waiter {
     }
 
     private boolean checkForFileWithName(String filename) {
-        File dir = new File(DEFAULT_DOWNLOAD_DIR);
+        File dir = new File(DataProvider.get().workingDir());
         File[] dirContents = dir.listFiles();
         assert dirContents != null;
         for (File dirContent : dirContents) {

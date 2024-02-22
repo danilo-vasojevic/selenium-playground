@@ -36,6 +36,7 @@ public class QuoteEntryPage extends BaseComponent {
         termsTab.verifyTabTitle("Terms & Conditions");
         wait.untilDisplayed(termsTab.backButton);
         wait.untilHasClass(termsTab.nextButton, "unavailable");
+        wait.forTimeout(500);
         termsTab.acceptTerms.click();
         wait.untilHasClass(termsTab.nextButton, "unavailable");
         termsTab.acceptOtherTerms.click();

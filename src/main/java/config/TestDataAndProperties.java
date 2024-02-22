@@ -23,10 +23,17 @@ public interface TestDataAndProperties extends Config {
     @DefaultValue("3")
     int implicitlyWait();
 
+    @Key("webdriver.waits.waitTimeout")
+    @DefaultValue("3")
+    int waitTimeout();
+
     @Key("webdriver.waits.pageLoadTimeout")
     @DefaultValue("5")
     int pageLoadTimeout();
 
     @Key("aut.baseUrl")
     String baseUrl();
+
+    @Key("user.dir")
+    String workingDir();
 }
