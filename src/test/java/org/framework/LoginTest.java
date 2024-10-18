@@ -14,10 +14,10 @@ public class LoginTest extends Fixture {
         po.login.verifyUrl();
         po.login.verifyPageElements();
 
-        po.wait(1000);
+        po.wait.forTimeout(1000);
         po.login.emailInput.sendKeys(REGULAR_USER_EMAIL);
         po.login.passwordInput.sendKeys(REGULAR_USER_PASS);
-        po.wait(1000);
+        po.wait.forTimeout(1000);
         po.login.submitButton.click();
 
         po.home.verifyUrl();
@@ -32,26 +32,26 @@ public class LoginTest extends Fixture {
         po.login.verifyUrl();
         po.login.verifyPageElements();
 
-        po.wait(1000);
+        po.wait.forTimeout(1000);
         po.login.emailInput.sendKeys(Any.randomEmail());
         po.login.passwordInput.sendKeys(REGULAR_USER_PASS);
-        po.wait(1000);
+        po.wait.forTimeout(1000);
         po.login.submitButton.click();
 
         po.login.wait.untilDisplayed(po.login.getCriticalText("Invalid email or password"));
         po.navigateTo("/account");
-        po.wait(5000);
+        po.wait.forTimeout(5000);
         po.home.wait.untilUrlContains("/account/login");
 
-        po.wait(1000);
+        po.wait.forTimeout(1000);
         po.login.emailInput.sendKeys(REGULAR_USER_EMAIL);
         po.login.passwordInput.sendKeys(Any.randomText(12));
-        po.wait(1000);
+        po.wait.forTimeout(1000);
         po.login.submitButton.click();
 
         po.login.wait.untilDisplayed(po.login.getCriticalText("Invalid email or password"));
         po.navigateTo("/account");
-        po.wait(5000);
+        po.wait.forTimeout(5000);
         po.home.wait.untilUrlContains("/account/login");
     }
 }

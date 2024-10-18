@@ -84,6 +84,13 @@ public class Waiter {
         fluentWait.until(d -> checkForFileWithName(filename));
     }
 
+    public void forCookie(String cookieName) {
+        wait.until(d -> {
+            Cookie cookie = d.manage().getCookieNamed(cookieName);
+            return cookie != null;
+        });
+    }
+
     public void forTimeout(int millis) {
         try {
             Thread.sleep(millis);

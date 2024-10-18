@@ -1,9 +1,12 @@
 package org.framework.pageObject.pages;
 
 import org.framework.pageObject.components.NavigationBar;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import java.util.List;
 
 public class CreateAccountPage extends BasePage {
     public final NavigationBar navigationBar;
@@ -19,6 +22,16 @@ public class CreateAccountPage extends BasePage {
 
     @FindBy(css = "button[type='submit']")
     public WebElement submitButton;
+
+    @FindBy(css = ".field-error")
+    public List<WebElement> errors;
+
+    public WebElement getCriticalText(String text) {
+        List<WebElement> buttons = driver.findElements(By.cssSelector(".text-critical"));
+        return buttons.stream()
+                .filter(element -> element.getText().contains(text))
+                .findFirst().get();
+    }
 
     public CreateAccountPage(WebDriver driver) {
         super(driver, "/account/register");
