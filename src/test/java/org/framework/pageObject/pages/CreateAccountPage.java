@@ -9,16 +9,16 @@ public class CreateAccountPage extends BasePage {
     public final NavigationBar navigationBar;
 
     @FindBy(name = "full_name")
-    private WebElement nameInput;
+    public WebElement nameInput;
 
     @FindBy(name = "email")
-    private WebElement emailInput;
+    public WebElement emailInput;
 
     @FindBy(name = "password")
-    private WebElement passwordInput;
+    public WebElement passwordInput;
 
     @FindBy(css = "button[type='submit']")
-    private WebElement submitButton;
+    public WebElement submitButton;
 
     public CreateAccountPage(WebDriver driver) {
         super(driver, "/account/register");
@@ -28,7 +28,7 @@ public class CreateAccountPage extends BasePage {
 
     public void verifyPageElements() {
         wait.untilDisplayed(nameInput);
-         wait.untilDisplayed(emailInput);
+        wait.untilDisplayed(emailInput);
         wait.untilDisplayed(passwordInput);
         wait.untilDisplayed(submitButton);
 

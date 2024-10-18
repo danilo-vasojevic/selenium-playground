@@ -1,27 +1,37 @@
 package org.framework.pageObject.pages;
 
 import org.framework.pageObject.components.NavigationBar;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import java.util.List;
 
 public class LoginPage extends BasePage {
     public final NavigationBar navigationBar;
 
     @FindBy(name = "email")
-    private WebElement emailInput;
+    public WebElement emailInput;
 
     @FindBy(name = "password")
-    private WebElement passwordInput;
+    public WebElement passwordInput;
 
     @FindBy(css = "button[type='submit']")
-    private WebElement submitButton;
+    public WebElement submitButton;
 
     @FindBy(linkText = "Create an account")
-    private WebElement createAccountLink;
+    public WebElement createAccountLink;
 
     @FindBy(linkText = "Forgot your password?")
-    private WebElement forgotPasswordLink;
+    public WebElement forgotPasswordLink;
+
+    public WebElement getCriticalText(String text) {
+        List<WebElement> buttons = driver.findElements(By.cssSelector(".text-critical"));
+        return buttons.stream()
+                .filter(element -> element.getText().contains(text))
+                .findFirst().get();
+    }
 
     public LoginPage(WebDriver driver) {
         super(driver, "/account/login");

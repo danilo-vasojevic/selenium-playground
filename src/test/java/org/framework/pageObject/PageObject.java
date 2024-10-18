@@ -1,5 +1,6 @@
 package org.framework.pageObject;
 
+import config.DataProvider;
 import org.framework.pageObject.pages.CreateAccountPage;
 import org.framework.pageObject.pages.HomePage;
 import org.framework.pageObject.pages.LoginPage;
@@ -24,6 +25,14 @@ public class PageObject {
 
     public void start() {
         driver.get(data.baseUrl());
+    }
+
+    public void wait(int millis) {
+        this.login.wait.forTimeout(millis);
+    }
+
+    public void navigateTo(String partialUrl) {
+        driver.get(String.format("%s%s", DataProvider.get().baseUrl(), partialUrl));
     }
 
     public void quit() {

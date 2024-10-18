@@ -31,6 +31,14 @@ public class Waiter {
         });
     }
 
+    public void untilUrlContains(String expUrl) {
+        wait.until(d -> {
+            String url = d.getCurrentUrl();
+            assert url != null;
+            return url.contains(expUrl);
+        });
+    }
+
     public void untilDisplayed(WebElement element) {
         wait.until(d -> element.isDisplayed());
     }

@@ -1,7 +1,7 @@
 package org.framework;
 import org.junit.jupiter.api.*;
 
-public class TestSuite extends Fixture {
+public class NavigationTest extends Fixture {
     @Test
     public void openHomePage() {
         po.home.navigate();
