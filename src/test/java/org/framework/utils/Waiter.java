@@ -1,4 +1,4 @@
-package org.democrance.testtask.utils;
+package org.framework.utils;
 
 import config.DataProvider;
 import org.openqa.selenium.*;
@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
 import java.time.Duration;
+import java.util.Objects;
 
 public class Waiter {
     private final WebDriver driver;
@@ -21,6 +22,13 @@ public class Waiter {
                 .withTimeout(Duration.ofSeconds(10))
                 .pollingEvery(Duration.ofMillis(500))
                 .ignoring(ElementNotInteractableException.class, StaleElementReferenceException.class);
+    }
+
+    public void untilUrlEquals(String expUrl) {
+        wait.until(d -> {
+            String url = d.getCurrentUrl();
+            return Objects.equals(url, expUrl);
+        });
     }
 
     public void untilDisplayed(WebElement element) {

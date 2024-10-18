@@ -1,4 +1,4 @@
-package org.democrance.testtask.dto;
+package org.framework.dto;
 
 public class PolicyDataDTO {
     public String amount;

@@ -1,6 +1,6 @@
-package org.democrance.testtask.utils;
+package org.framework.utils;
 
-import org.democrance.testtask.dto.PolicyDataDTO;
+import org.framework.dto.PolicyDataDTO;
 
 import java.util.Random;
 

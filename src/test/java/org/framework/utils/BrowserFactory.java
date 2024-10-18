@@ -1,4 +1,4 @@
-package org.democrance.testtask.utils;
+package org.framework.utils;
 
 import config.DataProvider;
 import config.TestDataAndProperties;
@@ -33,10 +33,10 @@ public class BrowserFactory {
     private static WebDriver createChromeDriver() {
         ChromeOptions options = new ChromeOptions();
         if(data.runHeadless()) options.addArguments("--headless");
-        HashMap<String, Object> chromePrefs = new HashMap<>();
-        chromePrefs.put("profile.default_content_settings.popups", 0);
-        chromePrefs.put("download.default_directory", data.workingDir());
-        options.setExperimentalOption("prefs", chromePrefs);
+        HashMap<String, Object> chromePreferences = new HashMap<>();
+        chromePreferences.put("profile.default_content_settings.popups", 0);
+        chromePreferences.put("download.default_directory", data.workingDir());
+        options.setExperimentalOption("prefs", chromePreferences);
         options.addArguments("--test-type");
         WebDriver driver = new ChromeDriver(options);
         setupWebDriver(driver);
@@ -45,7 +45,6 @@ public class BrowserFactory {
 
     private static WebDriver createFirefoxDriver() {
         FirefoxOptions options = new FirefoxOptions();
-        HashMap<String, Object> ffPrefs = new HashMap<>();
         options.addPreference("browser.download.folderList", 2);
         options.addPreference("browser.download.manager.showWhenStarting", false);
         options.addPreference("browser.download.dir", data.workingDir());

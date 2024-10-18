@@ -1,6 +1,6 @@
-package org.democrance.testtask;
+package org.framework;
 
-import org.democrance.testtask.pageObject.PageObject;
+import org.framework.pageObject.PageObject;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 
@@ -10,6 +10,7 @@ public class Fixture {
     @BeforeEach
     public void setUp() {
         po = new PageObject();
+        po.start();
     }
 
     @AfterEach
