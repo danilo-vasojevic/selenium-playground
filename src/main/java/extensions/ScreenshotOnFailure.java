@@ -15,7 +15,7 @@ public class ScreenshotOnFailure implements TestWatcher {
         WebDriver driver = getDriver();
         if(driver == null) throw new IllegalArgumentException("Driver is null when taking screenshot");
         byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-        addScreenshotAsAttachment(screenshot);
+        byte[] ignored = addScreenshotAsAttachment(screenshot);
     }
 
     @Attachment(value = "Page screenshot", type = "image/png")
