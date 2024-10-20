@@ -50,7 +50,11 @@ public class Waiter {
     }
 
     public void untilHasClass(WebElement element, String clazz) {
-        wait.until(d -> element.getAttribute("class").contains(clazz));
+        wait.until(d -> {
+            String classAttribute = element.getAttribute("class");
+            assert classAttribute != null;
+            return classAttribute.contains(clazz);
+        });
     }
 
     public void forCookie(String cookieName) {
