@@ -17,8 +17,7 @@ public class TestSuite {
     @BeforeEach
     public void beforeEach() {
         DriverProvider.disposeOfDriver();
-        po = new PageObject();
-        po.start();
+        po = new PageObject().start();
     }
 
     @AfterEach

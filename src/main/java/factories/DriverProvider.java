@@ -12,12 +12,9 @@ public class DriverProvider {
         return driver;
     }
 
-    public static WebDriver getDriverIfAny() {
-        return driver;
-    }
-
     public static void disposeOfDriver() {
         if(driver == null) return;
+        driver.manage().deleteAllCookies();
         driver.quit();
         driver = null;
     }

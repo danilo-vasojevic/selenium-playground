@@ -15,6 +15,6 @@ public class FailingTest extends TestSuite {
     public void fail() {
         po.navigate(REGISTER);
         po.register.verifyPageElements();
-        assert false;
+        throw new RuntimeException("Test is not implemented yet.");
     }
 }

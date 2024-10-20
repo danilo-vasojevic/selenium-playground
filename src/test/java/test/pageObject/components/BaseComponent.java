@@ -11,7 +11,7 @@ public abstract class BaseComponent {
 
     protected BaseComponent() {
         this.driver = getDriver();
-        this.wait = new Waiter(getDriver());
-        PageFactory.initElements(getDriver(), this);
+        this.wait = new Waiter(driver);
+        PageFactory.initElements(driver, this);
     }
 }
