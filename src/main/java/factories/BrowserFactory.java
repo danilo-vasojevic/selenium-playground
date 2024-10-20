@@ -1,8 +1,9 @@
-package org.framework.utils;
+package factories;
 
 import config.DataProvider;
 import config.TestDataAndProperties;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.SessionNotCreatedException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -38,9 +39,16 @@ public class BrowserFactory {
         chromePreferences.put("download.default_directory", data.workingDir());
         options.setExperimentalOption("prefs", chromePreferences);
         options.addArguments("--test-type");
-        WebDriver driver = new ChromeDriver(options);
-        setupWebDriver(driver);
-        return driver;
+        try {
+            WebDriver driver = new ChromeDriver(options);
+            setupDrierTimeouts(driver);
+            return driver;
+        } catch (SessionNotCreatedException e) {
+            WebDriver driver = new ChromeDriver(options);
+            setupDrierTimeouts(driver);
+            return driver;
+        }
+
     }
 
     private static WebDriver createFirefoxDriver() {
@@ -51,11 +59,11 @@ public class BrowserFactory {
         options.addPreference("browser.helperApps.neverAsk.saveToDisk", "application/pdf");
 
         WebDriver driver = new FirefoxDriver(options);
-        setupWebDriver(driver);
+        setupDrierTimeouts(driver);
         return driver;
     }
 
-    private static void setupWebDriver(WebDriver driver) {
+    private static void setupDrierTimeouts(WebDriver driver) {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(data.implicitlyWait()));
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(data.pageLoadTimeout()));
         driver.manage().window().setSize(new Dimension(data.windowWidth(), data.windowHeight()));

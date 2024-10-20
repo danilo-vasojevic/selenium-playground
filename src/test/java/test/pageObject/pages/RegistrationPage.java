@@ -1,6 +1,8 @@
-package org.framework.pageObject.pages;
+package test.pageObject.pages;
 
-import org.framework.pageObject.components.NavigationBar;
+import io.qameta.allure.Step;
+import test.pageObject.components.BaseComponent;
+import test.pageObject.components.NavigationBar;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,8 +10,10 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class LoginPage extends BasePage {
-    public final NavigationBar navigationBar;
+public class RegistrationPage extends BaseComponent {
+    // Locators
+    @FindBy(name = "full_name")
+    public WebElement nameInput;
 
     @FindBy(name = "email")
     public WebElement emailInput;
@@ -20,11 +24,11 @@ public class LoginPage extends BasePage {
     @FindBy(css = "button[type='submit']")
     public WebElement submitButton;
 
-    @FindBy(linkText = "Create an account")
-    public WebElement createAccountLink;
+    @FindBy(css = ".field-error")
+    public List<WebElement> errors;
 
-    @FindBy(linkText = "Forgot your password?")
-    public WebElement forgotPasswordLink;
+    // Components
+    public final NavigationBar navigationBar = new NavigationBar();
 
     public WebElement getCriticalText(String text) {
         List<WebElement> buttons = driver.findElements(By.cssSelector(".text-critical"));
@@ -33,18 +37,13 @@ public class LoginPage extends BasePage {
                 .findFirst().get();
     }
 
-    public LoginPage(WebDriver driver) {
-        super(driver, "/account/login");
-
-        navigationBar = new NavigationBar(driver);
-    }
-
+    // Actions
+    @Step("Verify elements on registration page")
     public void verifyPageElements() {
+        wait.untilDisplayed(nameInput);
         wait.untilDisplayed(emailInput);
         wait.untilDisplayed(passwordInput);
         wait.untilDisplayed(submitButton);
-        wait.untilDisplayed(createAccountLink);
-        wait.untilDisplayed(forgotPasswordLink);
 
         String[] categories = {"Men", "Women", "Kids"};
         navigationBar.verifyNavItems(categories);

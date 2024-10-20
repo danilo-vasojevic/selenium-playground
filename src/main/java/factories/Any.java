@@ -1,6 +1,4 @@
-package org.framework.utils;
-
-import org.framework.dto.PolicyDataDTO;
+package factories;
 
 import java.util.Random;
 
@@ -41,21 +39,5 @@ public class Any {
 
     public static String randomEmail() {
         return randomText(20) + "@automation.com";
-    }
-
-
-
-    public static PolicyDataDTO validPolicyData() {
-        PolicyDataDTO dto = new PolicyDataDTO();
-        dto.amount = "Above 30,000";
-        dto.frequency = randomElementOf("Monthly", "Annually");
-        dto.title = randomElementOf("Mr", "Mrs", "Ms");
-        dto.name = randomText(5) + " " + randomText(10);
-        dto.email = randomEmail();
-        dto.nationality = "Serbia";
-        dto.phone = randomPhone();
-        dto.id = "100000000000";
-
-        return dto;
     }
 }

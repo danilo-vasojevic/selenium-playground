@@ -1,15 +1,15 @@
-package org.framework.pageObject.pages;
+package test.pageObject.pages;
 
-import org.framework.pageObject.components.NavigationBar;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import test.pageObject.components.BaseComponent;
+import test.pageObject.components.NavigationBar;
 
 import java.util.List;
 
-public class HomePage extends BasePage {
-    public final NavigationBar navigationBar;
-
+public class HomePage extends BaseComponent {
+    // Locators
     public WebElement getButtonByText(String text) {
         List<WebElement> buttons = driver.findElements(By.cssSelector(".button"));
         return buttons.stream()
@@ -17,16 +17,15 @@ public class HomePage extends BasePage {
                 .findFirst().get();
     }
 
-    public HomePage(WebDriver driver) {
-        super(driver, "/");
+    // Components
+    public final NavigationBar navigationBar = new NavigationBar();
 
-        navigationBar = new NavigationBar(driver);
-    }
-
+    // Actions
+    @Step("Verify home page elements")
     public void verifyPageElements(String[] categoryButtons) {
         String[] categories = {"Men", "Women", "Kids"};
         navigationBar.verifyNavItems(categories);
-        for (String button: categoryButtons) {
+        for (String button : categoryButtons) {
             wait.untilDisplayed(getButtonByText(button));
         }
     }

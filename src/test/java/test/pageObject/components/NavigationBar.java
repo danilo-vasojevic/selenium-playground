@@ -1,4 +1,4 @@
-package org.framework.pageObject.components;
+package test.pageObject.components;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -19,10 +19,6 @@ public class NavigationBar extends BaseComponent {
 
     public WebElement getCategoryElement(String category) {
         return driver.findElement(By.xpath("//li[@class='nav-item']//a[text()='" + category + "']"));
-    }
-
-    public NavigationBar(WebDriver driver) {
-        super(driver);
     }
 
     public void verifyNavItems(String... categories) {

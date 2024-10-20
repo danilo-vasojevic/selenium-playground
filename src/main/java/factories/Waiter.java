@@ -1,4 +1,4 @@
-package org.framework.utils;
+package factories;
 
 import config.DataProvider;
 import org.openqa.selenium.*;
@@ -6,17 +6,13 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.io.File;
 import java.time.Duration;
-import java.util.Objects;
 
 public class Waiter {
-    private final WebDriver driver;
     private final WebDriverWait wait;
     private final Wait<WebDriver> fluentWait;
 
     public Waiter(WebDriver driver) {
-        this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(DataProvider.get().waitTimeout()));
         fluentWait = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(10))
@@ -24,19 +20,17 @@ public class Waiter {
                 .ignoring(ElementNotInteractableException.class, StaleElementReferenceException.class);
     }
 
-    public void untilUrlEquals(String expUrl) {
-        wait.until(d -> {
-            String url = d.getCurrentUrl();
-            return Objects.equals(url, expUrl);
-        });
-    }
-
     public void untilUrlContains(String expUrl) {
-        wait.until(d -> {
-            String url = d.getCurrentUrl();
-            assert url != null;
-            return url.contains(expUrl);
-        });
+        try {
+            wait.until(d -> {
+                String url = d.getCurrentUrl();
+                assert url != null;
+                return url.contains(expUrl);
+            });
+        } catch (TimeoutException e) {
+            throw new AssertionError("Timed out waiting for URL: " + expUrl);
+
+        }
     }
 
     public void untilDisplayed(WebElement element) {
@@ -57,31 +51,6 @@ public class Waiter {
 
     public void untilHasClass(WebElement element, String clazz) {
         wait.until(d -> element.getAttribute("class").contains(clazz));
-    }
-
-    public void forLoadingToAppearAndDisappear() {
-        WebElement loading = driver.findElement(By.cssSelector(".loading-background"));
-        try {
-            this.untilDisplayed(loading);
-            this.untilNotDisplayed(loading);
-        } catch (TimeoutException e) { /* Ignored */ }
-    }
-
-    private boolean checkForFileWithName(String filename) {
-        File dir = new File(DataProvider.get().workingDir());
-        File[] dirContents = dir.listFiles();
-        assert dirContents != null;
-        for (File dirContent : dirContents) {
-            if (dirContent.getName().contains(filename)) {
-                dirContent.delete();
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public void untilFileIsDownloaded(String filename) {
-        fluentWait.until(d -> checkForFileWithName(filename));
     }
 
     public void forCookie(String cookieName) {
