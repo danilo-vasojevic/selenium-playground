@@ -3,7 +3,6 @@ package test;
 public class Constants {
     public static class Links {
         public static final String HOME = "/";
-        public static final String ACCOUNT = "/account";
         public static final String LOGIN = "/account/login";
         public static final String REGISTER = "/account/register";
     }
